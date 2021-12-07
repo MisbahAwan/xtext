@@ -5,12 +5,16 @@ package org.xtext.example.mydsl.formatting2;
 
 import com.google.inject.Inject;
 import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
+import zNotationEcore.Relation;
+import zNotationEcore.Schema;
+import zNotationEcore.ZNotationModel;
 
 @SuppressWarnings("all")
 public class MyDslFormatter extends AbstractFormatter2 {
@@ -18,37 +22,42 @@ public class MyDslFormatter extends AbstractFormatter2 {
   @Extension
   private MyDslGrammarAccess _myDslGrammarAccess;
   
-  protected void _format(final /* ZNotationModel */Object zNotationModel, @Extension final IFormattableDocument document) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nschema cannot be resolved"
-      + "\nformat cannot be resolved");
+  protected void _format(final ZNotationModel zNotationModel, @Extension final IFormattableDocument document) {
+    EList<Schema> _schema = zNotationModel.getSchema();
+    for (final Schema schema : _schema) {
+      document.<Schema>format(schema);
+    }
   }
   
-  protected void _format(final /* SchemaState */Object schemaState, @Extension final IFormattableDocument document) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nvariable cannot be resolved"
-      + "\nformat cannot be resolved");
+  protected void _format(final Schema schema, @Extension final IFormattableDocument document) {
+    EList<Relation> _relation = schema.getRelation();
+    for (final Relation relation : _relation) {
+      document.<Relation>format(relation);
+    }
   }
   
-  public void format(final Object zNotationModel, final IFormattableDocument document) {
-    if (zNotationModel instanceof XtextResource) {
-      _format((XtextResource)zNotationModel, document);
+  public void format(final Object schema, final IFormattableDocument document) {
+    if (schema instanceof XtextResource) {
+      _format((XtextResource)schema, document);
       return;
-    } else if (zNotationModel instanceof EObject) {
-      _format((EObject)zNotationModel, document);
+    } else if (schema instanceof Schema) {
+      _format((Schema)schema, document);
       return;
-    } else if (zNotationModel == null) {
+    } else if (schema instanceof ZNotationModel) {
+      _format((ZNotationModel)schema, document);
+      return;
+    } else if (schema instanceof EObject) {
+      _format((EObject)schema, document);
+      return;
+    } else if (schema == null) {
       _format((Void)null, document);
       return;
-    } else if (zNotationModel != null) {
-      _format(zNotationModel, document);
-      return;
-    } else if (zNotationModel != null) {
-      _format(zNotationModel, document);
+    } else if (schema != null) {
+      _format(schema, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(zNotationModel, document).toString());
+        Arrays.<Object>asList(schema, document).toString());
     }
   }
 }

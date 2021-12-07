@@ -213,24 +213,24 @@ ruleSchema returns [EObject current=null]
 			newLeafNode(otherlv_2, grammarAccess.getSchemaAccess().getLeftCurlyBracketKeyword_2());
 		}
 		(
-			otherlv_3='Title'
+			otherlv_3='SchemaTitle'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getSchemaAccess().getTitleKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getSchemaAccess().getSchemaTitleKeyword_3_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSchemaAccess().getTitleEStringParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getSchemaAccess().getSchemaTitleEStringParserRuleCall_3_1_0());
 					}
-					lv_Title_4_0=ruleEString
+					lv_SchemaTitle_4_0=ruleEString
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSchemaRule());
 						}
 						set(
 							$current,
-							"Title",
-							lv_Title_4_0,
+							"SchemaTitle",
+							lv_SchemaTitle_4_0,
 							"org.xtext.example.mydsl.MyDsl.EString");
 						afterParserOrEnumRuleCall();
 					}
@@ -259,9 +259,67 @@ ruleSchema returns [EObject current=null]
 				)
 			)
 		)?
-		otherlv_7='}'
+		(
+			otherlv_7='relation'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getSchemaAccess().getRelationKeyword_5_0());
+			}
+			otherlv_8='{'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getSchemaAccess().getLeftCurlyBracketKeyword_5_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getSchemaAccess().getRelationRelationParserRuleCall_5_2_0());
+					}
+					lv_relation_9_0=ruleRelation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSchemaRule());
+						}
+						add(
+							$current,
+							"relation",
+							lv_relation_9_0,
+							"org.xtext.example.mydsl.MyDsl.Relation");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_10=','
+				{
+					newLeafNode(otherlv_10, grammarAccess.getSchemaAccess().getCommaKeyword_5_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSchemaAccess().getRelationRelationParserRuleCall_5_3_1_0());
+						}
+						lv_relation_11_0=ruleRelation
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSchemaRule());
+							}
+							add(
+								$current,
+								"relation",
+								lv_relation_11_0,
+								"org.xtext.example.mydsl.MyDsl.Relation");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_12='}'
+			{
+				newLeafNode(otherlv_12, grammarAccess.getSchemaAccess().getRightCurlyBracketKeyword_5_4());
+			}
+		)?
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getSchemaAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_13, grammarAccess.getSchemaAccess().getRightCurlyBracketKeyword_6());
 		}
 	)
 ;
@@ -296,6 +354,94 @@ ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 		}
 		{
 			newLeafNode(this_ID_1, grammarAccess.getEStringAccess().getIDTerminalRuleCall_1());
+		}
+	)
+;
+
+// Entry rule entryRuleRelation
+entryRuleRelation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationRule()); }
+	iv_ruleRelation=ruleRelation
+	{ $current=$iv_ruleRelation.current; }
+	EOF;
+
+// Rule Relation
+ruleRelation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRelationAccess().getRelationAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='Relation'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelationAccess().getRelationKeyword_1());
+		}
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRelationAccess().getLeftCurlyBracketKeyword_2());
+		}
+		(
+			otherlv_3='RelationType'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getRelationAccess().getRelationTypeKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRelationAccess().getRelationTypeEStringParserRuleCall_3_1_0());
+					}
+					lv_RelationType_4_0=ruleEString
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRelationRule());
+						}
+						set(
+							$current,
+							"RelationType",
+							lv_RelationType_4_0,
+							"org.xtext.example.mydsl.MyDsl.EString");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_5='RelatedTo'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getRelationAccess().getRelatedToKeyword_4_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRelationAccess().getRelatedToEStringParserRuleCall_4_1_0());
+					}
+					lv_RelatedTo_6_0=ruleEString
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRelationRule());
+						}
+						set(
+							$current,
+							"RelatedTo",
+							lv_RelatedTo_6_0,
+							"org.xtext.example.mydsl.MyDsl.EString");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_7='}'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getRelationAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;

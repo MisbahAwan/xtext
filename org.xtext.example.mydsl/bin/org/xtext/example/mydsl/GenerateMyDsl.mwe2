@@ -32,7 +32,7 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "org.xtext.example.mydsl.MyDsl"
-			fileExtensions = "mydsl"
+			fileExtensions = "zdsl"
 			referencedResource = "platform:/resource/ZNotationEcore/model/zNotationEcore.genmodel"
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}

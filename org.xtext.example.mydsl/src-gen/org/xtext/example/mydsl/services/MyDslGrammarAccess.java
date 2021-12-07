@@ -124,30 +124,42 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSchemaKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cTitleKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cTitleAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cTitleEStringParserRuleCall_3_1_0 = (RuleCall)cTitleAssignment_3_1.eContents().get(0);
+		private final Keyword cSchemaTitleKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSchemaTitleAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSchemaTitleEStringParserRuleCall_3_1_0 = (RuleCall)cSchemaTitleAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cSchemastateKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cSchemastateAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final CrossReference cSchemastateSchemaStateCrossReference_4_1_0 = (CrossReference)cSchemastateAssignment_4_1.eContents().get(0);
 		private final RuleCall cSchemastateSchemaStateEStringParserRuleCall_4_1_0_1 = (RuleCall)cSchemastateSchemaStateCrossReference_4_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cRelationKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cRelationAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cRelationRelationParserRuleCall_5_2_0 = (RuleCall)cRelationAssignment_5_2.eContents().get(0);
+		private final Group cGroup_5_3 = (Group)cGroup_5.eContents().get(3);
+		private final Keyword cCommaKeyword_5_3_0 = (Keyword)cGroup_5_3.eContents().get(0);
+		private final Assignment cRelationAssignment_5_3_1 = (Assignment)cGroup_5_3.eContents().get(1);
+		private final RuleCall cRelationRelationParserRuleCall_5_3_1_0 = (RuleCall)cRelationAssignment_5_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Schema returns Schema:
 		//    {Schema}
 		//    'Schema'
 		//    '{'
-		//        ('Title' Title=EString)?
+		//        ('SchemaTitle' SchemaTitle=EString)?
 		//        ('schemastate' schemastate=[SchemaState|EString])?
+		//        ('relation' '{' relation+=Relation ( "," relation+=Relation)* '}' )?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Schema}
 		//'Schema'
 		//'{'
-		//    ('Title' Title=EString)?
+		//    ('SchemaTitle' SchemaTitle=EString)?
 		//    ('schemastate' schemastate=[SchemaState|EString])?
+		//    ('relation' '{' relation+=Relation ( "," relation+=Relation)* '}' )?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -160,17 +172,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('Title' Title=EString)?
+		//('SchemaTitle' SchemaTitle=EString)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'Title'
-		public Keyword getTitleKeyword_3_0() { return cTitleKeyword_3_0; }
+		//'SchemaTitle'
+		public Keyword getSchemaTitleKeyword_3_0() { return cSchemaTitleKeyword_3_0; }
 		
-		//Title=EString
-		public Assignment getTitleAssignment_3_1() { return cTitleAssignment_3_1; }
+		//SchemaTitle=EString
+		public Assignment getSchemaTitleAssignment_3_1() { return cSchemaTitleAssignment_3_1; }
 		
 		//EString
-		public RuleCall getTitleEStringParserRuleCall_3_1_0() { return cTitleEStringParserRuleCall_3_1_0; }
+		public RuleCall getSchemaTitleEStringParserRuleCall_3_1_0() { return cSchemaTitleEStringParserRuleCall_3_1_0; }
 		
 		//('schemastate' schemastate=[SchemaState|EString])?
 		public Group getGroup_4() { return cGroup_4; }
@@ -187,8 +199,38 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EString
 		public RuleCall getSchemastateSchemaStateEStringParserRuleCall_4_1_0_1() { return cSchemastateSchemaStateEStringParserRuleCall_4_1_0_1; }
 		
+		//('relation' '{' relation+=Relation ( "," relation+=Relation)* '}' )?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'relation'
+		public Keyword getRelationKeyword_5_0() { return cRelationKeyword_5_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
+		
+		//relation+=Relation
+		public Assignment getRelationAssignment_5_2() { return cRelationAssignment_5_2; }
+		
+		//Relation
+		public RuleCall getRelationRelationParserRuleCall_5_2_0() { return cRelationRelationParserRuleCall_5_2_0; }
+		
+		//( "," relation+=Relation)*
+		public Group getGroup_5_3() { return cGroup_5_3; }
+		
+		//","
+		public Keyword getCommaKeyword_5_3_0() { return cCommaKeyword_5_3_0; }
+		
+		//relation+=Relation
+		public Assignment getRelationAssignment_5_3_1() { return cRelationAssignment_5_3_1; }
+		
+		//Relation
+		public RuleCall getRelationRelationParserRuleCall_5_3_1_0() { return cRelationRelationParserRuleCall_5_3_1_0; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_5_4() { return cRightCurlyBracketKeyword_5_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class EStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.EString");
@@ -216,10 +258,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSchemaStateKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cStatechangeoperatorKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cStatechangeoperatorAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final CrossReference cStatechangeoperatorStateChangeOperatorCrossReference_3_1_0 = (CrossReference)cStatechangeoperatorAssignment_3_1.eContents().get(0);
-		private final RuleCall cStatechangeoperatorStateChangeOperatorEStringParserRuleCall_3_1_0_1 = (RuleCall)cStatechangeoperatorStateChangeOperatorCrossReference_3_1_0.eContents().get(1);
+		private final Keyword cStateTypeKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cStateTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cStateTypeEStringParserRuleCall_3_1_0 = (RuleCall)cStateTypeAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cVariableKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
@@ -236,7 +277,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    {SchemaState}
 		//    'SchemaState'
 		//    '{'
-		//        ('statechangeoperator' statechangeoperator=[StateChangeOperator|EString])?
+		//        ('StateType' StateType=EString)?
 		//        ('variable' '{' variable+=Variable ( "," variable+=Variable)* '}' )?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -244,7 +285,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//{SchemaState}
 		//'SchemaState'
 		//'{'
-		//    ('statechangeoperator' statechangeoperator=[StateChangeOperator|EString])?
+		//    ('StateType' StateType=EString)?
 		//    ('variable' '{' variable+=Variable ( "," variable+=Variable)* '}' )?
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -258,20 +299,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('statechangeoperator' statechangeoperator=[StateChangeOperator|EString])?
+		//('StateType' StateType=EString)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'statechangeoperator'
-		public Keyword getStatechangeoperatorKeyword_3_0() { return cStatechangeoperatorKeyword_3_0; }
+		//'StateType'
+		public Keyword getStateTypeKeyword_3_0() { return cStateTypeKeyword_3_0; }
 		
-		//statechangeoperator=[StateChangeOperator|EString]
-		public Assignment getStatechangeoperatorAssignment_3_1() { return cStatechangeoperatorAssignment_3_1; }
-		
-		//[StateChangeOperator|EString]
-		public CrossReference getStatechangeoperatorStateChangeOperatorCrossReference_3_1_0() { return cStatechangeoperatorStateChangeOperatorCrossReference_3_1_0; }
+		//StateType=EString
+		public Assignment getStateTypeAssignment_3_1() { return cStateTypeAssignment_3_1; }
 		
 		//EString
-		public RuleCall getStatechangeoperatorStateChangeOperatorEStringParserRuleCall_3_1_0_1() { return cStatechangeoperatorStateChangeOperatorEStringParserRuleCall_3_1_0_1; }
+		public RuleCall getStateTypeEStringParserRuleCall_3_1_0() { return cStateTypeEStringParserRuleCall_3_1_0; }
 		
 		//('variable' '{' variable+=Variable ( "," variable+=Variable)* '}' )?
 		public Group getGroup_4() { return cGroup_4; }
@@ -306,56 +344,74 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
-	public class StateChangeOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.StateChangeOperator");
+	public class RelationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Relation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cStateChangeOperatorAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cStateChangeOperatorKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cRelationAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRelationKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cStateChangeTypeKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cStateChangeTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cStateChangeTypeEStringParserRuleCall_3_1_0 = (RuleCall)cStateChangeTypeAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cRelationTypeKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cRelationTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cRelationTypeEStringParserRuleCall_3_1_0 = (RuleCall)cRelationTypeAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cRelatedToKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cRelatedToAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cRelatedToEStringParserRuleCall_4_1_0 = (RuleCall)cRelatedToAssignment_4_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//StateChangeOperator returns StateChangeOperator:
-		//    {StateChangeOperator}
-		//    'StateChangeOperator'
+		//Relation returns Relation:
+		//    {Relation}
+		//    'Relation'
 		//    '{'
-		//        ('StateChangeType' StateChangeType=EString)?
+		//        ('RelationType' RelationType=EString)?
+		//        ('RelatedTo' RelatedTo=EString)?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{StateChangeOperator}
-		//'StateChangeOperator'
+		//{Relation}
+		//'Relation'
 		//'{'
-		//    ('StateChangeType' StateChangeType=EString)?
+		//    ('RelationType' RelationType=EString)?
+		//    ('RelatedTo' RelatedTo=EString)?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
-		//{StateChangeOperator}
-		public Action getStateChangeOperatorAction_0() { return cStateChangeOperatorAction_0; }
+		//{Relation}
+		public Action getRelationAction_0() { return cRelationAction_0; }
 		
-		//'StateChangeOperator'
-		public Keyword getStateChangeOperatorKeyword_1() { return cStateChangeOperatorKeyword_1; }
+		//'Relation'
+		public Keyword getRelationKeyword_1() { return cRelationKeyword_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('StateChangeType' StateChangeType=EString)?
+		//('RelationType' RelationType=EString)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'StateChangeType'
-		public Keyword getStateChangeTypeKeyword_3_0() { return cStateChangeTypeKeyword_3_0; }
+		//'RelationType'
+		public Keyword getRelationTypeKeyword_3_0() { return cRelationTypeKeyword_3_0; }
 		
-		//StateChangeType=EString
-		public Assignment getStateChangeTypeAssignment_3_1() { return cStateChangeTypeAssignment_3_1; }
+		//RelationType=EString
+		public Assignment getRelationTypeAssignment_3_1() { return cRelationTypeAssignment_3_1; }
 		
 		//EString
-		public RuleCall getStateChangeTypeEStringParserRuleCall_3_1_0() { return cStateChangeTypeEStringParserRuleCall_3_1_0; }
+		public RuleCall getRelationTypeEStringParserRuleCall_3_1_0() { return cRelationTypeEStringParserRuleCall_3_1_0; }
+		
+		//('RelatedTo' RelatedTo=EString)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'RelatedTo'
+		public Keyword getRelatedToKeyword_4_0() { return cRelatedToKeyword_4_0; }
+		
+		//RelatedTo=EString
+		public Assignment getRelatedToAssignment_4_1() { return cRelatedToAssignment_4_1; }
+		
+		//EString
+		public RuleCall getRelatedToEStringParserRuleCall_4_1_0() { return cRelatedToEStringParserRuleCall_4_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class VariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Variable");
@@ -450,7 +506,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final SchemaElements pSchema;
 	private final EStringElements pEString;
 	private final SchemaStateElements pSchemaState;
-	private final StateChangeOperatorElements pStateChangeOperator;
+	private final RelationElements pRelation;
 	private final VariableElements pVariable;
 	
 	private final Grammar grammar;
@@ -466,7 +522,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pSchema = new SchemaElements();
 		this.pEString = new EStringElements();
 		this.pSchemaState = new SchemaStateElements();
-		this.pStateChangeOperator = new StateChangeOperatorElements();
+		this.pRelation = new RelationElements();
 		this.pVariable = new VariableElements();
 	}
 	
@@ -516,8 +572,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    {Schema}
 	//    'Schema'
 	//    '{'
-	//        ('Title' Title=EString)?
+	//        ('SchemaTitle' SchemaTitle=EString)?
 	//        ('schemastate' schemastate=[SchemaState|EString])?
+	//        ('relation' '{' relation+=Relation ( "," relation+=Relation)* '}' )?
 	//    '}';
 	public SchemaElements getSchemaAccess() {
 		return pSchema;
@@ -541,7 +598,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    {SchemaState}
 	//    'SchemaState'
 	//    '{'
-	//        ('statechangeoperator' statechangeoperator=[StateChangeOperator|EString])?
+	//        ('StateType' StateType=EString)?
 	//        ('variable' '{' variable+=Variable ( "," variable+=Variable)* '}' )?
 	//    '}';
 	public SchemaStateElements getSchemaStateAccess() {
@@ -552,18 +609,19 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getSchemaStateAccess().getRule();
 	}
 	
-	//StateChangeOperator returns StateChangeOperator:
-	//    {StateChangeOperator}
-	//    'StateChangeOperator'
+	//Relation returns Relation:
+	//    {Relation}
+	//    'Relation'
 	//    '{'
-	//        ('StateChangeType' StateChangeType=EString)?
+	//        ('RelationType' RelationType=EString)?
+	//        ('RelatedTo' RelatedTo=EString)?
 	//    '}';
-	public StateChangeOperatorElements getStateChangeOperatorAccess() {
-		return pStateChangeOperator;
+	public RelationElements getRelationAccess() {
+		return pRelation;
 	}
 	
-	public ParserRule getStateChangeOperatorRule() {
-		return getStateChangeOperatorAccess().getRule();
+	public ParserRule getRelationRule() {
+		return getRelationAccess().getRule();
 	}
 	
 	//Variable returns Variable:

@@ -13,9 +13,9 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
+import zNotationEcore.Relation;
 import zNotationEcore.Schema;
 import zNotationEcore.SchemaState;
-import zNotationEcore.StateChangeOperator;
 import zNotationEcore.Variable;
 import zNotationEcore.ZNotationEcorePackage;
 import zNotationEcore.ZNotationModel;
@@ -34,14 +34,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ZNotationEcorePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case ZNotationEcorePackage.RELATION:
+				sequence_Relation(context, (Relation) semanticObject); 
+				return; 
 			case ZNotationEcorePackage.SCHEMA:
 				sequence_Schema(context, (Schema) semanticObject); 
 				return; 
 			case ZNotationEcorePackage.SCHEMA_STATE:
 				sequence_SchemaState(context, (SchemaState) semanticObject); 
-				return; 
-			case ZNotationEcorePackage.STATE_CHANGE_OPERATOR:
-				sequence_StateChangeOperator(context, (StateChangeOperator) semanticObject); 
 				return; 
 			case ZNotationEcorePackage.VARIABLE:
 				sequence_Variable(context, (Variable) semanticObject); 
@@ -56,10 +56,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Relation returns Relation
+	 *
+	 * Constraint:
+	 *     (RelationType=EString? RelatedTo=EString?)
+	 */
+	protected void sequence_Relation(ISerializationContext context, Relation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     SchemaState returns SchemaState
 	 *
 	 * Constraint:
-	 *     (statechangeoperator=[StateChangeOperator|EString]? (variable+=Variable variable+=Variable*)?)
+	 *     (StateType=EString? (variable+=Variable variable+=Variable*)?)
 	 */
 	protected void sequence_SchemaState(ISerializationContext context, SchemaState semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -71,21 +83,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Schema returns Schema
 	 *
 	 * Constraint:
-	 *     (Title=EString? schemastate=[SchemaState|EString]?)
+	 *     (SchemaTitle=EString? schemastate=[SchemaState|EString]? (relation+=Relation relation+=Relation*)?)
 	 */
 	protected void sequence_Schema(ISerializationContext context, Schema semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StateChangeOperator returns StateChangeOperator
-	 *
-	 * Constraint:
-	 *     StateChangeType=EString?
-	 */
-	protected void sequence_StateChangeOperator(ISerializationContext context, StateChangeOperator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

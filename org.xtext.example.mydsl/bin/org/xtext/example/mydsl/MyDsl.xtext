@@ -12,16 +12,13 @@ ZNotationModel returns ZNotationModel:
 		('schema' '{' schema+=Schema ( "," schema+=Schema)* '}' )?
 	'}';
 
-
-
-
-
 Schema returns Schema:
 	{Schema}
 	'Schema'
 	'{'
-		('Title' Title=EString)?
+		('SchemaTitle' SchemaTitle=EString)?
 		('schemastate' schemastate=[SchemaState|EString])?
+		('relation' '{' relation+=Relation ( "," relation+=Relation)* '}' )?
 	'}';
 
 EString returns ecore::EString:
@@ -31,15 +28,16 @@ SchemaState returns SchemaState:
 	{SchemaState}
 	'SchemaState'
 	'{'
-		('statechangeoperator' statechangeoperator=[StateChangeOperator|EString])?
+		('StateType' StateType=EString)?
 		('variable' '{' variable+=Variable ( "," variable+=Variable)* '}' )?
 	'}';
 
-StateChangeOperator returns StateChangeOperator:
-	{StateChangeOperator}
-	'StateChangeOperator'
+Relation returns Relation:
+	{Relation}
+	'Relation'
 	'{'
-		('StateChangeType' StateChangeType=EString)?
+		('RelationType' RelationType=EString)?
+		('RelatedTo' RelatedTo=EString)?
 	'}';
 
 Variable returns Variable:
